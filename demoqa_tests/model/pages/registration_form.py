@@ -6,7 +6,7 @@ from selene.support.shared import browser
 
 from demoqa_tests.model.contols import datepicker, dropdown, modal
 from tests.test_data.user_data import Subject
-
+from selenium.webdriver.common.keys import Keys
 
 def given_opened():
     browser.open('/automation-practice-form')
@@ -35,6 +35,9 @@ def set_phone_number(user_number: str):
 def set_date_of_birth(birth_day, birth_month, birth_year):
     datepicker.select_date(birth_day, birth_month, birth_year)
 
+
+def type_date_of_birth(day, month, year):
+    browser.element('#dateOfBirthInput').send_keys(Keys.CONTROL + 'a').type(day + month + year).press_enter()
 
 def add_subjects(values: Tuple[Subject]):
     for subject in values:
